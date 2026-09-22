@@ -12,8 +12,6 @@ rbc_fiscal_results.mat
 
 # Project-generated outputs
 results/
-figures/
-tables/
 
 # MATLAB temporary files
 *.asv
