@@ -1,16 +1,21 @@
 # Dynare-generated code and logs
 +rbc_core/
 +rbc_fiscal/
++rbc_estimation/
 rbc_core/
 rbc_fiscal/
+rbc_estimation/
 rbc_core.m
 rbc_fiscal.m
+rbc_estimation.m
 rbc_core.log
 rbc_fiscal.log
+rbc_estimation.log
 rbc_core_results.mat
 rbc_fiscal_results.mat
+rbc_estimation_results.mat
 
-# Project-generated outputs
+# Project-generated intermediate output
 results/
 
 # MATLAB temporary files

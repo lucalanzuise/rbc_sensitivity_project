@@ -1,9 +1,10 @@
 # Parameter Sensitivity and Shock Transmission in a Stochastic RBC Model
 
-This project develops a calibrated stochastic real business cycle (RBC) model in
-Dynare and studies how household preference parameters and shock persistence
-shape macroeconomic transmission. It then extends the model with stochastic
-government purchases and computes fiscal multipliers.
+This project develops a stochastic real business cycle (RBC) model in Dynare and
+studies how household preference parameters and shock persistence shape
+macroeconomic transmission. The baseline analysis is calibrated and is extended
+in two directions: a fiscal block with stochastic government purchases and a
+separate Bayesian estimation exercise using quarterly euro-area data.
 
 The project is designed around five research questions:
 
@@ -24,10 +25,12 @@ The consolidated implementation, systematic sensitivity analysis, response
 metrics, two-dimensional parameter grid, reproducible stochastic simulation and
 government-purchases extension were developed as an independent follow-up.
 
-This repository contains a calibrated and simulated model. It does not claim
-that the parameters or shock variances have been estimated from data. Variance
-decompositions therefore describe the model under the assumed calibration and
-must not be interpreted as empirical estimates of observed business cycles.
+The core and fiscal exercises are calibrated rather than estimated. Their
+variance decompositions therefore describe the model under the assumed
+calibration and must not be interpreted as empirical estimates of observed
+business cycles. A separate estimation extension confronts the RBC model with
+euro-area data and estimates selected shock-process parameters using Bayesian
+methods.
 
 ## Economic environment
 
@@ -115,6 +118,31 @@ rho_g = {0, 0.5, 0.9, 0.98}
 
 and reports both impact and 20-quarter cumulative output multipliers.
 
+
+## Bayesian estimation extension
+
+A separate empirical extension estimates selected parameters of the RBC model
+using quarterly data for the euro area (EA20) from 2000Q1 to 2025Q4. The two
+observables are real GDP and total hours worked from Eurostat quarterly national
+accounts. Both series are transformed into percentage log deviations from trend
+using the quarterly Hodrick-Prescott filter with `lambda = 1600`.
+
+The estimation keeps the preference and technology parameters calibrated and
+estimates:
+
+```text
+rho_z
+rho_phi
+stderr eps_z
+stderr eps_phi
+```
+
+Dynare combines the specified priors with the likelihood implied by the model
+and the two observed series. The extension reports posterior parameter estimates,
+smoothed structural innovations and posterior-distribution impulse responses. It
+is implemented separately from the calibrated sensitivity analysis so that the
+original exercises remain reproducible and directly comparable.
+
 ## Main outputs
 
 Running the project produces the following figures:
@@ -132,6 +160,10 @@ Running the project produces the following figures:
 11. `11_government_spending_irfs.png`
 12. `12_fiscal_persistence_sensitivity.png`
 13. `13_fiscal_variance_decomposition.png`
+14. `14_bayesian_parameter_estimates.png`
+15. `15_smoothed_structural_shocks.png`
+16. `16_posterior_irfs_eps_z.png`
+17. `17_posterior_irfs_eps_phi.png`
 
 The main generated tables are:
 
@@ -149,6 +181,7 @@ The main generated tables are:
 - `fiscal_multipliers.csv`
 - `fiscal_variance_decomposition.csv`
 - `research_question_map.csv`
+- `bayesian_posterior_summary.csv`
 
 The research-question map links each research question to its principal figure,
 quantitative statistic and output table.
@@ -189,22 +222,18 @@ on this seed.
 
 ## Files
 
-- `rbc_core.mod`: core RBC model and all core sensitivity experiments.
+- `rbc_core.mod`: core calibrated RBC model and sensitivity experiments.
 - `rbc_fiscal.mod`: government-purchases extension.
-- `run_rbc_project.m`: single MATLAB entry point that solves both Dynare models
-  and creates all figures and CSV tables.
-- `figures/`, `tables/`, `results/`: generated automatically when the project is
-  run and therefore do not need to exist beforehand.
+- `run_rbc_project.m`: MATLAB entry point for the calibrated and fiscal analysis.
+- `rbc_estimation.mod`: standalone Bayesian estimation extension.
+- `run_rbc_estimation.m`: MATLAB entry point for the estimation and estimation figures.
+- `euro_area_rbc_dynare.csv`: transformed EA20 observables used by Dynare.
+- `figures/`: exported figures from the calibrated and estimated exercises.
+- `tables/`: exported quantitative results.
+- `results/`: generated intermediate output and not tracked in the repository.
 
-## Reproducing the project
-
-Requirements:
-- MATLAB
-- Dynare 7.0
-
-Run:
-
-run_rbc_project
+To reproduce the calibrated project, run `run_rbc_project`. To reproduce the
+Bayesian estimation extension, run `run_rbc_estimation`.
 
 ## Interpretation conventions
 
