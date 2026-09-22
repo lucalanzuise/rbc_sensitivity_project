@@ -196,6 +196,16 @@ on this seed.
 - `figures/`, `tables/`, `results/`: generated automatically when the project is
   run and therefore do not need to exist beforehand.
 
+## Reproducing the project
+
+Requirements:
+- MATLAB
+- Dynare 7.0
+
+Run:
+
+run_rbc_project
+
 ## Interpretation conventions
 
 - IRFs are responses to one-standard-deviation innovations.
