@@ -1,0 +1,6 @@
+ResearchQuestion,Question,MainStatistic,PrimaryFigure,PrimaryTable
+1,"How does the intertemporal elasticity of substitution affect consumption smoothing and capital accumulation?","Impact/peak consumption plus cumulative investment and capital responses",03_sigma_sensitivity.png,sigma_sensitivity_metrics.csv
+2,"How does the Frisch elasticity affect the labour-market response to shocks?","Impact/peak employment, output and wage responses",04_labour_elasticity_sensitivity.png,frisch_sensitivity_metrics.csv
+3,"How does shock persistence change the magnitude and duration of business-cycle fluctuations?","Impact, signed peak, time to peak, half-life, cumulative 20Q and cumulative 40Q responses",05_tfp_persistence_sensitivity.png and 06_labour_persistence_sensitivity.png,rho_z_sensitivity_metrics.csv and rho_phi_sensitivity_metrics.csv
+4,"How do productivity and labour-preference shocks generate different macroeconomic dynamics?","Side-by-side IRFs to equally sized one-standard-deviation innovations",07_tfp_vs_labour_shock.png,baseline_irf_metrics.csv
+5,"Which shocks account for fluctuations in output, consumption, employment and investment?","Unconditional variance shares under the calibrated shock variances",09_baseline_variance_decomposition.png,baseline_variance_decomposition.csv
